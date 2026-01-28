@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ToastProvider } from "@/components/common/Toast";
+import AIChatWidget from "@/components/ai/AIChatWidget";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,6 +52,7 @@ export default function RootLayout({
         <AuthProvider>
           <ToastProvider>
             {children}
+            <AIChatWidget />
           </ToastProvider>
         </AuthProvider>
       </body>

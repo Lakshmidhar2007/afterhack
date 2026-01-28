@@ -30,7 +30,7 @@ export default function StudentDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!user) return;
+        if (!user || !user.id) return;
 
         // Subscribe to requests count
         const unsubscribe = requestService.subscribeToReceivedRequests(user.id, (reqs) => {

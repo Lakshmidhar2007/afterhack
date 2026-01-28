@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             const userData: Omit<User, 'id'> = {
                 email,
                 displayName,
-                photoURL: result.user.photoURL || undefined,
+                ...(result.user.photoURL && { photoURL: result.user.photoURL }),
                 role,
                 createdAt: new Date(),
                 updatedAt: new Date(),
@@ -138,7 +138,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 const userData: Omit<User, 'id'> = {
                     email: result.user.email || '',
                     displayName: result.user.displayName || '',
-                    photoURL: result.user.photoURL || undefined,
+                    ...(result.user.photoURL && { photoURL: result.user.photoURL }),
                     role: 'student', // Default role, can be changed in profile
                     createdAt: new Date(),
                     updatedAt: new Date(),

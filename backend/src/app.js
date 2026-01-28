@@ -12,6 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+const aiRoutes = require('./routes/aiRoutes');
+app.use('/api/ai', aiRoutes);
+
 app.get('/', (req, res) => {
     res.send('AfterHack API is running');
 });

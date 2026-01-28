@@ -92,6 +92,11 @@ export default function FounderDashboard() {
     };
 
     const filteredProjects = projects.filter(project => {
+        // If AI search results are active, only show matching projects
+        if (aiSearchResults !== null) {
+            return aiSearchResults.includes(project.id);
+        }
+
         const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             project.teamName.toLowerCase().includes(searchQuery.toLowerCase()) ||
             project.techStack.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -106,6 +111,42 @@ export default function FounderDashboard() {
     const [requestMessage, setRequestMessage] = useState('');
     const [requestType, setRequestType] = useState<'intro' | 'poc' | 'hiring'>('intro');
     const [sendingRequest, setSendingRequest] = useState(false);
+
+    // AI Search State
+    const [aiSearching, setAiSearching] = useState(false);
+    const [aiSearchResults, setAiSearchResults] = useState<string[] | null>(null);
+
+    const handleAISearch = async () => {
+        if (!searchQuery.trim() || projects.length === 0) return;
+
+        setAiSearching(true);
+        try {
+            const response = await fetch('http://localhost:5001/api/ai/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    query: searchQuery,
+                    projects: projects.map(p => ({
+                        id: p.id,
+                        title: p.title,
+                        description: p.description,
+                    })),
+                }),
+            });
+            const data = await response.json();
+            setAiSearchResults(data.matchingIds || []);
+        } catch (error) {
+            console.error('AI Search failed:', error);
+            alert('AI Search failed. Please try again.');
+        } finally {
+            setAiSearching(false);
+        }
+    };
+
+    const clearAISearch = () => {
+        setAiSearchResults(null);
+        setSearchQuery('');
+    };
 
     const handleSendRequest = async () => {
         if (!user || !requestModal.project) return;
@@ -162,6 +203,24 @@ export default function FounderDashboard() {
                         />
                     </div>
                     <div className="flex items-center gap-3">
+                        <Button
+                            variant="primary"
+                            onClick={handleAISearch}
+                            isLoading={aiSearching}
+                            disabled={!searchQuery.trim()}
+                            leftIcon={<Search className="w-4 h-4" />}
+                        >
+                            AI Search
+                        </Button>
+                        {aiSearchResults !== null && (
+                            <Button
+                                variant="ghost"
+                                onClick={clearAISearch}
+                                leftIcon={<X className="w-4 h-4" />}
+                            >
+                                Clear AI
+                            </Button>
+                        )}
                         <Button
                             variant={showFilters ? 'primary' : 'outline'}
                             onClick={() => setShowFilters(!showFilters)}
