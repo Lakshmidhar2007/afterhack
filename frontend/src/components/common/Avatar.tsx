@@ -90,7 +90,10 @@ interface AvatarGroupProps {
     size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
-export function AvatarGroup({ avatars, max = 4, size = 'md' }: AvatarGroupProps) {
+export function AvatarGroup({ avatars = [], max = 4, size = 'md' }: AvatarGroupProps) {
+    if (!avatars || !Array.isArray(avatars)) {
+        return null;
+    }
     const visibleAvatars = avatars.slice(0, max);
     const remainingCount = avatars.length - max;
 

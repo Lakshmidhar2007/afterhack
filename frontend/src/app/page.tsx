@@ -1,11 +1,5 @@
 import { TopNav, Footer } from "@/components/layout";
-import {
-  HeroSection,
-  HowItWorks,
-  FeaturedProjects,
-  Testimonials,
-  CTASection,
-} from "@/components/landing";
+import { HeroSection } from "@/components/landing";
 
 export default function Home() {
   return (
@@ -13,12 +7,9 @@ export default function Home() {
       <TopNav />
       <main>
         <HeroSection />
-        <HowItWorks />
-        <FeaturedProjects />
-        <Testimonials />
-        <CTASection />
       </main>
       <Footer />
     </div>
   );
 }
+

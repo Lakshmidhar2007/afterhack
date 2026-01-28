@@ -8,6 +8,18 @@ import Button from '@/components/common/Button';
 
 export default function HeroSection() {
     const [stats, setStats] = useState({ projects: 0, students: 0, opportunities: 0 });
+    const [particles, setParticles] = useState<Array<{ left: number; top: number; duration: number; delay: number }>>([]);
+
+    // Generate particles client-side only to avoid hydration mismatch
+    useEffect(() => {
+        const generatedParticles = [...Array(20)].map(() => ({
+            left: Math.random() * 100,
+            top: Math.random() * 100,
+            duration: 3 + Math.random() * 2,
+            delay: Math.random() * 2,
+        }));
+        setParticles(generatedParticles);
+    }, []);
 
     // Animated counter
     useEffect(() => {
@@ -57,23 +69,23 @@ export default function HeroSection() {
                 className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/30 rounded-full blur-[128px]"
             />
 
-            {/* Floating Particles */}
-            {[...Array(20)].map((_, i) => (
+            {/* Floating Particles - generated client-side to avoid hydration mismatch */}
+            {particles.map((particle, i) => (
                 <motion.div
                     key={i}
                     className="absolute w-1 h-1 bg-white/30 rounded-full"
                     style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
+                        left: `${particle.left}%`,
+                        top: `${particle.top}%`,
                     }}
                     animate={{
                         y: [0, -30, 0],
                         opacity: [0.2, 0.8, 0.2],
                     }}
                     transition={{
-                        duration: 3 + Math.random() * 2,
+                        duration: particle.duration,
                         repeat: Infinity,
-                        delay: Math.random() * 2,
+                        delay: particle.delay,
                     }}
                 />
             ))}

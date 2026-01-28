@@ -28,27 +28,28 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref
     ) => {
         const baseStyles = `
-      inline-flex items-center justify-center gap-2 font-medium
+      inline-flex items-center justify-center gap-2.5 font-semibold
       rounded-xl transition-all duration-200 ease-out
       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900
       disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
-      active:scale-[0.98]
+      active:scale-[0.97]
     `;
 
         const variants = {
             primary: `
-        bg-gradient-to-r from-indigo-500 to-purple-500 text-white
-        hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] hover:-translate-y-0.5
+        bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 bg-[length:200%_100%] text-white
+        shadow-lg shadow-indigo-500/25
+        hover:shadow-xl hover:shadow-indigo-500/40 hover:-translate-y-0.5 hover:bg-[100%_0]
         focus-visible:ring-indigo-500
       `,
             secondary: `
         bg-white/10 text-white border border-white/20
-        hover:bg-white/15 hover:border-white/30
+        hover:bg-white/20 hover:border-white/30 hover:-translate-y-0.5
         focus-visible:ring-white/50
       `,
             outline: `
-        bg-transparent text-white border border-white/20
-        hover:bg-white/5 hover:border-white/30
+        bg-transparent text-white border-2 border-white/25
+        hover:bg-white/10 hover:border-white/40 hover:-translate-y-0.5
         focus-visible:ring-white/50
       `,
             ghost: `
@@ -58,15 +59,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       `,
             danger: `
         bg-red-500/20 text-red-400 border border-red-500/30
-        hover:bg-red-500/30 hover:border-red-500/50
+        hover:bg-red-500/30 hover:border-red-500/50 hover:-translate-y-0.5
         focus-visible:ring-red-500
       `,
         };
 
         const sizes = {
-            sm: 'h-9 px-3 text-sm',
-            md: 'h-11 px-5 text-base',
-            lg: 'h-13 px-7 text-lg',
+            sm: 'h-10 px-4 text-sm',
+            md: 'h-12 px-6 text-base',
+            lg: 'h-14 px-8 text-lg',
         };
 
         return (
