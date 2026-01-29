@@ -4,12 +4,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCZVk6vkjBnl7UXJWvQsvE3Ql1uhLnVsIk",
-    authDomain: "afterhacks-2cc4a.firebaseapp.com",
-    projectId: "afterhacks-2cc4a",
-    storageBucket: "afterhacks-2cc4a.firebasestorage.app",
-    messagingSenderId: "501464202625",
-    appId: "1:501464202625:web:de8e2a50ba91d53173bc80"
+    apiKey: "AIzaSyAD_RzConnCJhxsxCIJLrSqYPVynNpnc5A",
+    authDomain: "studio-8148291470-70625.firebaseapp.com",
+    projectId: "studio-8148291470-70625",
+    storageBucket: "studio-8148291470-70625.firebasestorage.app",
+    messagingSenderId: "10904713228",
+    appId: "1:10904713228:web:41cb493352db5ababe9629"
 };
 
 // Initialize Firebase only if it hasn't been initialized

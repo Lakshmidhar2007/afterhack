@@ -108,7 +108,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-4xl mx-auto leading-tight"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl mx-auto leading-tight"
                 >
                     Where Hackathon Projects{' '}
                     <span className="gradient-text">Meet Real Opportunities</span>
@@ -149,7 +149,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto"
+                    className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-2xl mx-auto"
                 >
                     <div className="text-center">
                         <div className="flex items-center justify-center gap-2 text-3xl sm:text-4xl font-bold text-white">

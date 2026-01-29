@@ -76,8 +76,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             const result = await signInWithEmailAndPassword(auth, email, password);
             const userData = await fetchUserData(result.user);
             setUser(userData);
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Sign in error:', error);
+            const firebaseError = error as { code?: string };
+            if (firebaseError.code === 'auth/unauthorized-domain') {
+                throw new Error('This domain is not authorized for Firebase Authentication. Please add it in the Firebase Console.');
+            }
+            if (firebaseError.code === 'auth/user-not-found' || firebaseError.code === 'auth/wrong-password') {
+                throw new Error('Invalid email or password.');
+            }
             throw error;
         }
     };
@@ -119,8 +126,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             });
 
             setUser({ id: result.user.uid, ...userData });
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Sign up error:', error);
+            const firebaseError = error as { code?: string };
+            if (firebaseError.code === 'auth/email-already-in-use') {
+                throw new Error('This email is already registered.');
+            }
+            if (firebaseError.code === 'auth/weak-password') {
+                throw new Error('Password should be at least 6 characters.');
+            }
             throw error;
         }
     };
@@ -154,8 +168,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             } else {
                 setUser(existingUser);
             }
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Google sign in error:', error);
+            const firebaseError = error as { code?: string };
+            if (firebaseError.code === 'auth/unauthorized-domain') {
+                throw new Error('This domain is not authorized for Firebase Authentication. Please add it in the Firebase Console.');
+            }
+            if (firebaseError.code === 'auth/popup-closed-by-user') {
+                throw new Error('Sign in was cancelled.');
+            }
             throw error;
         }
     };

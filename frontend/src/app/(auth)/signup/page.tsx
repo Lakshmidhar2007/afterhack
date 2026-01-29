@@ -133,18 +133,18 @@ export default function SignUpPage() {
                     <p className="text-white/60 mb-8">Join thousands of builders and founders</p>
 
                     {/* Role Selector */}
-                    <div className="flex gap-4 mb-8">
+                    <div className="grid grid-cols-2 gap-4 mb-8">
                         <button
                             type="button"
                             onClick={() => setSelectedRole('student')}
-                            className={`flex-1 p-4 rounded-xl border transition-all ${selectedRole === 'student'
-                                    ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border-indigo-500/50'
-                                    : 'bg-white/5 border-white/10 hover:border-white/20'
+                            className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all min-w-0 ${selectedRole === 'student'
+                                ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border-indigo-500/50'
+                                : 'bg-white/5 border-white/10 hover:border-white/20'
                                 }`}
                         >
-                            <GraduationCap className={`w-6 h-6 mx-auto mb-2 ${selectedRole === 'student' ? 'text-indigo-400' : 'text-white/60'
+                            <GraduationCap className={`w-6 h-6 mb-2 flex-shrink-0 ${selectedRole === 'student' ? 'text-indigo-400' : 'text-white/60'
                                 }`} />
-                            <p className={`text-sm font-medium ${selectedRole === 'student' ? 'text-white' : 'text-white/60'
+                            <p className={`text-sm font-medium truncate w-full ${selectedRole === 'student' ? 'text-white' : 'text-white/60'
                                 }`}>
                                 I&apos;m a Student
                             </p>
@@ -152,14 +152,14 @@ export default function SignUpPage() {
                         <button
                             type="button"
                             onClick={() => setSelectedRole('founder')}
-                            className={`flex-1 p-4 rounded-xl border transition-all ${selectedRole === 'founder'
-                                    ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border-indigo-500/50'
-                                    : 'bg-white/5 border-white/10 hover:border-white/20'
+                            className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all min-w-0 ${selectedRole === 'founder'
+                                ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border-indigo-500/50'
+                                : 'bg-white/5 border-white/10 hover:border-white/20'
                                 }`}
                         >
-                            <Building className={`w-6 h-6 mx-auto mb-2 ${selectedRole === 'founder' ? 'text-indigo-400' : 'text-white/60'
+                            <Building className={`w-6 h-6 mb-2 flex-shrink-0 ${selectedRole === 'founder' ? 'text-indigo-400' : 'text-white/60'
                                 }`} />
-                            <p className={`text-sm font-medium ${selectedRole === 'founder' ? 'text-white' : 'text-white/60'
+                            <p className={`text-sm font-medium truncate w-full ${selectedRole === 'founder' ? 'text-white' : 'text-white/60'
                                 }`}>
                                 I&apos;m a Founder
                             </p>
