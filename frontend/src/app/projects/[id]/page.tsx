@@ -359,8 +359,8 @@ export default function ProjectDetailsPage() {
                                 <h3 className="font-semibold text-white mb-3">Technology Readiness</h3>
                                 <div className="flex items-center gap-3">
                                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg ${mockProject.trl >= 7 ? 'bg-emerald-500/20 text-emerald-400' :
-                                            mockProject.trl >= 4 ? 'bg-yellow-500/20 text-yellow-400' :
-                                                'bg-red-500/20 text-red-400'
+                                        mockProject.trl >= 4 ? 'bg-yellow-500/20 text-yellow-400' :
+                                            'bg-red-500/20 text-red-400'
                                         }`}>
                                         {mockProject.trl}
                                     </div>
@@ -379,7 +379,7 @@ export default function ProjectDetailsPage() {
                             <Card>
                                 <h3 className="font-semibold text-white mb-4">Team</h3>
                                 <AvatarGroup
-                                    users={mockProject.teamMembers.map(m => ({
+                                    avatars={mockProject.teamMembers.map(m => ({
                                         name: m.name,
                                         src: m.avatar,
                                     }))}

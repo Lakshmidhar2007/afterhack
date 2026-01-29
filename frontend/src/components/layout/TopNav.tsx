@@ -18,6 +18,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import Avatar from '@/components/common/Avatar';
 import Button from '@/components/common/Button';
 import { cn } from '@/lib/utils/helpers';
+import SearchBar from '@/components/common/SearchBar';
 
 export default function TopNav() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -249,18 +250,27 @@ export default function TopNav() {
                             className="relative w-full max-w-2xl"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2">
-                                <div className="flex items-center gap-3 px-4 py-3">
-                                    <Search className="w-5 h-5 text-white/40" />
-                                    <input
-                                        type="text"
-                                        placeholder="Search projects, teams, technologies..."
-                                        className="flex-1 bg-transparent text-white placeholder-white/40 outline-none text-lg"
-                                        autoFocus
-                                    />
-                                    <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs text-white/40 bg-white/10 rounded">
-                                        ESC
-                                    </kbd>
+                            <div className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                                <SearchBar
+                                    placeholder="Ask anything about cybersecurity, courses, or projects..."
+                                    className="border-none bg-transparent"
+                                    autoFocus={true}
+                                    onSearch={(val: string) => {
+                                        console.log('Searching for:', val);
+                                    }}
+                                />
+                                <div className="px-4 py-2 bg-black/20 flex justify-between items-center text-[10px] text-white/40 border-t border-white/5">
+                                    <div className="flex items-center gap-4">
+                                        <span className="flex items-center gap-1">
+                                            <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">ESC</kbd>
+                                            to close
+                                        </span>
+                                        <span className="flex items-center gap-1">
+                                            <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">↵</kbd>
+                                            to search
+                                        </span>
+                                    </div>
+                                    <span className="italic">Powered by Claude 3.5 Sonnet</span>
                                 </div>
                             </div>
                         </motion.div>
